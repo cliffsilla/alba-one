@@ -8,7 +8,8 @@ const app = express();
 app.use(express.static(__dirname + '/dist/alba-one'));
 
 app.get('/*', function(req,res) {
-    
+
+app.use (express.static(__dirname+'/dist/alba-one'));
 res.sendFile(path.join(__dirname+'/dist/alba-one/index.html'));
 });
 
