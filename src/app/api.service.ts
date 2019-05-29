@@ -7,33 +7,29 @@ import { Observable } from  'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
-  private BASE_URL = "http://dummy.restapiexample.com/api/v1";
-  private ALL_EMPLOYEES_URL = `${this.BASE_URL}/employees`;
-  private EMPLOYEE_URL = `${this.BASE_URL}/employee/`
-  private CREATE_EMPLOYEE_URL = `${this.BASE_URL}/create`;
-  private UPDATE_EMPLOYEE_URL = `${this.BASE_URL}/update/`
-  private DELETE_EMPLOYEE_URL = `${this.BASE_URL}/delete/`;
 
+
+export class ApiService {
+  
   constructor(private httpClient: HttpClient) { }
 
   getAllEmployees(): Observable<Employee[]>{
-    return this.httpClient.get<Employee[]>(this.ALL_EMPLOYEES_URL);
+    return this.httpClient.get<Employee[]>(`/api/v1/employees`);
   }
 
   getEmployeeById(id: number): Observable<Employee>{
-    return this.httpClient.get<Employee>(this.EMPLOYEE_URL + id);
+    return this.httpClient.get<Employee>(`/api/v1/employee/${id}`);
   }
 
   createEmployee(employee: Employee): Observable<Employee>{
-    return this.httpClient.post<Employee>(this.CREATE_EMPLOYEE_URL, employee);
+    return this.httpClient.post<Employee>(`/api/v1/create`, employee);
   }
 
   updateEmployee(employee: Employee): Observable<Employee>{
-    return this.httpClient.put<Employee>(this.UPDATE_EMPLOYEE_URL + employee.id, employee);
+    return this.httpClient.put<Employee>(`/api/v1/update/${employee.id}`, employee);
   }
 
   deleteEmployee(employee: Employee): Observable<Employee[]>{
-    return this.httpClient.delete<Employee[]>(this.DELETE_EMPLOYEE_URL + employee.id);
+    return this.httpClient.delete<Employee[]>(`/api/v1/delete/${employee.id}`);
   } 
 }

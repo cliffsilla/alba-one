@@ -26,31 +26,32 @@ export class EditEmployeeComponent implements OnInit {
       return;
     }
     this.editForm = this.formBuilder.group({
+      id:[],
       employee_name: ['', Validators.required],
       employee_salary: ['', Validators.required],
-      employee_age: ['', Validators.required]
+      employee_age: ['', Validators.required],
+      profile_image:[]
     });
     
-    console.log(employeeId);
-    this.employeeData = this.http.get('http://dummy.restapiexample.com/api/v1/employee/13330');
-    console.log(this.employeeData);
-    //console.log(this.http.get("http://dummy.restapiexample.com/api/v1/employee/13329"));
-    //this.editForm.setValue(this.http.get("http://dummy.restapiexample.com/api/v1/employee/13329"));
-    // this.apiService.getEmployeeById(+ employeeId)
-    //   .subscribe( data => {
-    //     this.editForm.setValue(data);
-    //   });
+    this.apiService.getEmployeeById(parseInt(employeeId)).subscribe(
+      res => {
+        this.editForm.setValue(res);
+      },
+      err => {
+        alert(`An error has occurred ${err}`);
+      }
+    );
   }
 
   onSubmit() {
     this.apiService.updateEmployee(this.editForm.value)
       .pipe(first())
       .subscribe(
-        data => {
+        res => {
           this.router.navigate(['employee']);
         },
-        error => {
-          alert(error);
+        err => {
+          alert(`An error has occurred ${err}`);
         });
   }
 

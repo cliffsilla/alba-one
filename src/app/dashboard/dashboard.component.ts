@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
 import { AgGridNg2 } from 'ag-grid-angular';
+import { ApiService } from '../api.service';
+import { Employee } from '../models/employee.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +10,7 @@ import { AgGridNg2 } from 'ag-grid-angular';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
+  employee: Employee;
   @ViewChild('agGrid') agGrid: AgGridNg2;
   title = 'Alba One';
   
@@ -22,17 +23,18 @@ export class DashboardComponent implements OnInit {
 
   rowData: any;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private apiService: ApiService) {
 
   }
 
   ngOnInit() {
-      this.rowData = this.http.get('http://dummy.restapiexample.com/api/v1/employees');
+      this.rowData = this.http.get('/api/v1/employees');
   }
   
   onGridReady($event){
 
   }
+
   getSelectedRows() {
     const selectedNodes = this.agGrid.api.getSelectedNodes();
     const selectedData = selectedNodes.map( node => node.data );
