@@ -1,22 +1,6 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div>
-  <button (click)="getSelectedRows()">Get Selected Rows</button>
-
-  <ag-grid-angular
-    #agGrid 
-    style="width: 850px; height: 500px;" 
-    class="ag-theme-balham"
-    [rowData]="rowData | async" 
-    [columnDefs]="columnDefs"
-    [pagination]="true" 
-    [paginationAutoPageSize]="true"
-    [gridOptions]="gridOptions" 
-    [animateRows]="true" 
-    [rowSelection]="rowSelection"  
-    (gridReady)="onGridReady($event)" 
-    enableColResize
-    >
-  </ag-grid-angular>
+  
 </div>
 
 <router-outlet></router-outlet>

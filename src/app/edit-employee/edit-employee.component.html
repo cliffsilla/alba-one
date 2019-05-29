@@ -1,0 +1,23 @@
+<div class="col-md-12">
+    <h2 class="text-center">Edit Employee</h2>
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+      
+      <div class="form-group">
+        <label for="employee_name">Employee Name:</label>
+        <input formControlName="employee_name"  name="employee_name" class="form-control" id="employee_name">
+      </div>
+  
+      <div class="form-group">
+        <label for="employee_salary">Employee Salary:</label>
+        <input formControlName="employee_salary" name="employee_salary" class="form-control" id="employee_salary">
+      </div>
+  
+      <div class="form-group">
+        <label for="employee_age">Employee age:</label>
+        <input formControlName="employee_age" name="employee_age" class="form-control" id="employee_age">
+      </div>
+  
+      <button type="submit" class="btn btn-success">Update</button>
+    </form>
+  </div>
+  <router-outlet></router-outlet>
