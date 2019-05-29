@@ -14,6 +14,8 @@ import { HttpClient } from '@angular/common/http';
 export class EditEmployeeComponent implements OnInit {
   employee: Employee;
   editForm: FormGroup;
+  employeeData:any;
+
   constructor(private http: HttpClient, private formBuilder: FormBuilder,private router: Router, private apiService: ApiService) { }
 
   ngOnInit() {
@@ -29,9 +31,11 @@ export class EditEmployeeComponent implements OnInit {
       employee_age: ['', Validators.required]
     });
     
-    
-    console.log(this.http.get("http://dummy.restapiexample.com/api/v1/employee/"+employeeId));
-    this.editForm.setValue(this.http.get("http://dummy.restapiexample.com/api/v1/employee/"+employeeId));
+    console.log(employeeId);
+    this.employeeData = this.http.get('http://dummy.restapiexample.com/api/v1/employee/13330');
+    console.log(this.employeeData);
+    //console.log(this.http.get("http://dummy.restapiexample.com/api/v1/employee/13329"));
+    //this.editForm.setValue(this.http.get("http://dummy.restapiexample.com/api/v1/employee/13329"));
     // this.apiService.getEmployeeById(+ employeeId)
     //   .subscribe( data => {
     //     this.editForm.setValue(data);
