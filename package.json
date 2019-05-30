@@ -3,14 +3,17 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy.conf.json",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ng build --aot --prod"
   },
   "private": true,
   "dependencies": {
+    "@angular/cli": "~7.0.4",
+    "@angular/compiler-cli": "^7.2.15",
     "@angular/common": "~7.0.0",
     "@angular/compiler": "~7.0.0",
     "@angular/core": "~7.0.0",
@@ -24,6 +27,7 @@
     "core-js": "^2.5.4",
     "ngx-pagination": "^3.2.1",
     "rxjs": "~6.3.3",
+    "typescript": "~3.1.1",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
@@ -46,5 +50,9 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
     "typescript": "~3.1.1"
+  },
+  "engines": {
+    "node": "10.15.3",
+    "npm": "6.9.0"
   }
 }

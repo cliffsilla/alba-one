@@ -28,7 +28,14 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.rowData = this.http.get('/api/v1/employees');
+      //this.rowData = this.http.get('/api/v1/employees');
+      this.apiService.getAllEmployees().subscribe(res =>{
+        this.rowData = res;
+      },
+      err => {
+        return err.status
+      })
+      
   }
   
   onGridReady($event){

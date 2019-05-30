@@ -5,7 +5,7 @@
     #agGrid 
     style="width: 850px; height: 500px;" 
     class="ag-theme-balham"
-    [rowData]="rowData | async" 
+    [rowData]="rowData" 
     [columnDefs]="columnDefs"
     [pagination]="true" 
     [paginationAutoPageSize]="true"
@@ -16,18 +16,4 @@
     (gridReady)="onGridReady($event)"
     >
   </ag-grid-angular>
-
-  <!-- <div class="well">
-    <div >
-      <button type="button" class="btn btn-success" (click)="onAddRow()">
-        <span class="glyphicon glyphicon-plus"></span> Add New Row
-      </button>
-      <button type="button" class="btn btn-info" (click)="updateItems()">
-        <span class="glyphicon glyphicon-pencil"></span> Update Data
-      </button>
-      <button type="button" class="btn btn-danger" (click)="onRemoveSelected()">
-        <span class="glyphicon glyphicon-trash"></span> Delete Selected
-      </button>
-    </div>
-  </div> -->
 </div>

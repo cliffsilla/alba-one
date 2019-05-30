@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Employee } from  './models/employee.model';
 import { Observable } from  'rxjs';
@@ -14,7 +14,7 @@ export class ApiService {
   constructor(private httpClient: HttpClient) { }
 
   getAllEmployees(): Observable<Employee[]>{
-    return this.httpClient.get<Employee[]>(`/api/v1/employees`);
+    return this.httpClient.get<Employee[]>(`/api/v1/employees`,this.setHttpHeader());
   }
 
   getEmployeeById(id: number): Observable<Employee>{
@@ -32,4 +32,10 @@ export class ApiService {
   deleteEmployee(employee: Employee): Observable<Employee[]>{
     return this.httpClient.delete<Employee[]>(`/api/v1/delete/${employee.id}`);
   } 
+
+  setHttpHeader() {
+    const headers = new HttpHeaders().set('Accept', 'application/json').set('Content-Type', 'application/json');
+    let options = { headers: headers};
+    return options;
+  }
 }
