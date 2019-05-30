@@ -25,7 +25,7 @@ export class ApiService {
     return this.httpClient.post<Employee>(`/api/v1/create`, employee);
   }
 
-  updateEmployee(employee: Employee): Observable<Employee>{
+  updateEmployee(employee: any): Observable<Employee>{
     return this.httpClient.put<Employee>(`/api/v1/update/${employee.id}`, employee);
   }
 

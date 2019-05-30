@@ -14,7 +14,12 @@ import { HttpClient } from '@angular/common/http';
 export class EditEmployeeComponent implements OnInit {
   employee: Employee;
   editForm: FormGroup;
-  employeeData:any;
+  employeeData = {
+    "id":null,
+    "name":null,
+    "salary":null,
+    "age":null
+  };
 
   constructor(private http: HttpClient, private formBuilder: FormBuilder,private router: Router, private apiService: ApiService) { }
 
@@ -44,11 +49,16 @@ export class EditEmployeeComponent implements OnInit {
   }
 
   onSubmit() {
-    this.apiService.updateEmployee(this.editForm.value)
+    this.employeeData.id = localStorage.getItem("editEmployeeId");
+    this.employeeData.name = this.editForm.value.employee_name;
+    this.employeeData.age = this.editForm.value.employee_age;
+    this.employeeData.salary = this.editForm.value.employee_salary;
+    console.log(this.employeeData);
+    this.apiService.updateEmployee(this.employeeData)
       .pipe(first())
       .subscribe(
         res => {
-          this.router.navigate(['employee']);
+          this.router.navigate(['dashboard']);
         },
         err => {
           alert(`An error has occurred ${err}`);
